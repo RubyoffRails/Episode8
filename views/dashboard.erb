@@ -1,6 +1,27 @@
-<h1>OH HAI THERE</h1>
+<!-- <h1>OH HAI THERE</h1>
 <form method="POST" action="/number">
 	<label for="number">Max number for Randomitude</label>
 	<input type="text" id="number" name="number"/>
-	<input type="submit" class="btn btn-large btn-primary" value="View Number"/>
-</form>
+	<input type="submit" class="btn btn-small btn-primary" value="View Number"/>
+</form> -->
+
+
+ <!-- sample modal content -->
+          <div id="myModal" class="modal hide fade">
+            <div class="modal-header">
+              <button class="close" data-dismiss="modal">&times;</button>
+              <h3>Random Number Generator</h3>
+            </div>
+            <div class="modal-body">
+              <h4>Text in a modal</h4>
+      <form method="POST" action="/number">
+			<label for="number">Max number for Randomitude</label>
+			<input type="text" id="number" name="number"/>
+              <hr>
+            </div>
+            <div class="modal-footer">
+             <input type="submit" class="btn btn-large btn-primary" value="View Number"/>
+             </form>
+            </div>
+          </div>
+          <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch Generator</a>
