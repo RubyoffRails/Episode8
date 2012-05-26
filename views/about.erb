@@ -1,0 +1,23 @@
+<h1>About Dorton Page</h1>
+<h2>This is the about page for me, the Panda Leveled Ruby Off Rails "developer".</h2>
+
+<p>About me: <%= @a %> </p>
+
+ <div id="myModal" class="modal hide fade">
+            <div class="modal-header">
+              <button class="close" data-dismiss="modal">&times;</button>
+              <h3>Random Number Generator</h3>
+            </div>
+            <div class="modal-body">
+            
+      <form method="POST" action="/number">
+			 <label for="number">Enter the max number for randomitude</label>
+			 <input type="text" id="number" name="number"/>
+       </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-large btn-primary" value="View Number"/>
+        </div>
+      </form>
+          </div>
+          
+			<h2>Click <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">HERE</a> for the random number generator.</h2>
