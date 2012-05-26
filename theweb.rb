@@ -5,6 +5,7 @@ require 'sinatra'
 enable :sessions
 
 get '/' do
+	@a = ["Is new to this","Just had a baby","When does summer start?"].sample
 	erb :about
 end
 
@@ -18,7 +19,7 @@ post '/number' do
 end
 
 get '/about' do
-	erb :About
+	erb :about
 end
 
 get '/random' do
