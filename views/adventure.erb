@@ -1,0 +1,12 @@
+<h1>Adventure</h1>
+<br><br>
+<%= @page.content %> 
+<br><br>
+<form method="POST" action="/adventure">
+	<label for="choice">Choose the next move:</label>
+	<input type="radio" value="<%= @page.option_a_id %>" name="choice_id"/> <%= @page.preview_a %>
+	<br>
+	<input type="radio" value="<%= @page.option_b_id %>" name="choice_id"/> <%= @page.preview_b %>
+	<br><br>
+	<input type="submit" class="btn btn-large btn-primary" value="Submit"/>
+</form>

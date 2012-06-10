@@ -1,12 +1,26 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'sinatra'
-require 'sinatra/reloader'
+require 'shotgun'
+require_relative 'db/seed'
+require_relative 'models/db'
+
 enable :sessions
 
-# get '/' do
-#   erb :dashboard
-# end
+get '/adventure' do
+  @page = DB.starting_point  
+  erb :adventure
+end
+
+post '/adventure' do
+  @page = DB.page_with_id(params[:choice_id].to_i)
+    
+  if @page.conclusion == true
+    erb :adventure_complete
+  else
+    erb :adventure
+  end
+end
 
 post '/number' do
 	@number_of_randoms = session[:number_of_randoms] || 0
