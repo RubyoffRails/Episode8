@@ -1,2 +1,2 @@
-require "./theweb"
+require "./app.rb"
 run Sinatra::Application
