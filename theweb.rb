@@ -1,13 +1,16 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'sinatra'
-require 'sinatra/reloader'
+#require 'sinatra/reloader'
 enable :sessions
 
 get '/' do
 	erb :dashboard
 end
 
+get '/about' do
+	erb :about
+end
 post '/number' do
 	@number_of_randoms = session[:number_of_randoms] || 0
 	@number_of_randoms += 1
