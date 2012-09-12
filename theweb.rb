@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/reloader'
+require 'geocoder'
 enable :sessions
 
 get '/' do
@@ -15,4 +16,8 @@ post '/number' do
 	number_as_string = params.fetch('number').to_i
 	@the_number = rand(number_as_string)
 	erb :number
+end
+
+get "/about" do
+  erb :about
 end
