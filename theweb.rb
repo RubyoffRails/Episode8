@@ -6,6 +6,10 @@ require 'sinatra/content_for'
 require 'geocoder'
 enable :sessions
 
+before do
+  @number_of_randoms = session[:number_of_randoms] || 0
+end
+
 get "/" do
   @about_mes = [
     { title: "I like Gems", content: "They're shiny - how could you not like 'em?" },
@@ -13,20 +17,19 @@ get "/" do
     { title: "Extremely Short", content: "I am only 4'3\"." },
     { title: "Wiggly Ears", content: "I can wiggle my ears (without touching them, of course)." },
     { title: "Acrobatic", content: "I can walk on my hands." },
-    { title: "Good Liar", content: "All of these \"facts\" about me are complete made up!" }
+    { title: "Good Liar", content: "All of these \"facts\" about me are completely made up!" }
   ]
   erb :about
 end
 
-get '/about' do
+get '/random' do
   erb :dashboard
 end
 
 post '/number' do
-  @number_of_randoms = session[:number_of_randoms] || 0
   @number_of_randoms += 1
   session[:number_of_randoms] = @number_of_randoms
-  number_as_string = params.fetch('number').to_i
-  @the_number = rand(number_as_string)
+  number_as_int = params.fetch('number').to_i
+  @the_number = rand(number_as_int)
   erb :number
 end
