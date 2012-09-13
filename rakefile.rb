@@ -53,11 +53,24 @@ namespace :db do
   end
 
   task :configuration => :environment do
-    @config = YAML.load_file('config/database.yml')[DATABASE_ENV]
+    if ENV['DATABASE_URL'].nil?
+      @config = YAML.load_file('config/database.yml')[DATABASE_ENV]
+      @config = @config.merge({'database'=> 'postgres', 'schema_search_path'=> 'public'})
+    else
+      @config = URI.parse(ENV['DATABASE_URL'])
+    end
   end
 
   task :configure_connection => :configuration do
-    ActiveRecord::Base.establish_connection(@config.merge({'database'=> 'postgres', 'schema_search_path'=> 'public'}))
+    ActiveRecord::Base.establish_connection(
+      :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
+      :host     => db.host,
+      :port     => db.port,
+      :username => db.user,
+      :password => db.password,
+      :database => db.path[1..-1],
+      :encoding => 'utf8'
+    )
     ActiveRecord::Base.logger = Logger.new STDOUT if @config['logger']
   end
 
