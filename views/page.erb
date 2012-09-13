@@ -1,0 +1,25 @@
+<h2>Page <%= @book.current_page.id %></h2>
+<p><%= @book.current_page.content %></p>
+
+<% content_for :extra do %>
+      <div class="row">
+        <div class="span4">
+          <h2><%= @book.current_page.options.first.preview %></h2>
+          <p>
+            <form method="POST" action="/adventure">
+              <input type="hidden" name="choice" value="A"/>
+              <input type="submit" class="btn btn-large btn-primary" value="Choose A"/>
+            </form>
+          </p>
+        </div>
+        <div class="span4">
+          <h2><%= @book.current_page.options.last.preview %></h2>
+          <p>
+            <form method="POST" action="/adventure">
+              <input type="hidden" name="choice" value="B"/>
+              <input type="submit" class="btn btn-large btn-primary" value="Choose B"/>
+            </form>
+          </p>
+        </div>
+      </div>
+<% end %>

@@ -1,0 +1,24 @@
+<h1>Adventure Complete!</h1>
+<p><%= @book.current_page.content %></p>
+<p>
+  <form method="POST" action="/reset">
+    <input type="submit" class="btn btn-large btn-primary" value="Start Over"/>
+  </form>
+</p>
+
+<% content_for :extra do %>
+      <div class="row">
+        <div class="span4">
+          <h2><%= @book.current_page.winner ? "Winner!" : "Loser!" %></h2>
+          <p>
+            <%=
+              if @book.current_page.winner
+                "Congrats, you won! You get 30 gold."
+              else
+                "Sorry, you lost! You were eaten by sharks... :("
+              end
+            %>
+          </p>
+        </div>
+      </div>
+<% end %>

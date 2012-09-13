@@ -23,6 +23,8 @@ Eagle Level
 1. Copy the Choose Your Own Adventure code into this project
 2. let the user select their adventure and tell them if they died or not
 
+My app is available at http://cryptic-badlands-9197.herokuapp.com/
+
 Show Links
 ----------
 
