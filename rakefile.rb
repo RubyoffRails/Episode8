@@ -3,6 +3,7 @@ require "bundler/setup"
 require 'yaml'
 require 'logger'
 require 'active_record'
+require 'pg'
 
 require 'rspec/core/rake_task'
 
@@ -20,30 +21,17 @@ namespace :db do
     options = {:charset => 'utf8', :collation => 'utf8_unicode_ci'}
 
     create_db = lambda do |config|
+      database = config['database']
+      puts database
       ActiveRecord::Base.establish_connection config.merge('database' => nil)
-      ActiveRecord::Base.connection.create_database config['database'], options
+      ActiveRecord::Base.connection.create_database config.merge('database' => database), options
       ActiveRecord::Base.establish_connection config
     end
 
     begin
       create_db.call config
-    rescue Mysql::Error => sqlerr
-      if sqlerr.errno == 1405
-        print "#{sqlerr.error}. \nPlease provide the root password for your mysql installation\n>"
-        root_password = $stdin.gets.strip
-
-        grant_statement = <<-SQL
-          GRANT ALL PRIVILEGES ON #{config['database']}.* 
-            TO '#{config['username']}'@'localhost'
-            IDENTIFIED BY '#{config['password']}' WITH GRANT OPTION;
-        SQL
-
-        create_db.call config.merge('database' => nil, 'username' => 'root', 'password' => root_password)
-      else
-        $stderr.puts sqlerr.error
-        $stderr.puts "Couldn't create database for #{config.inspect}, charset: utf8, collation: utf8_unicode_ci"
-        $stderr.puts "(if you set the charset manually, make sure you have a matching collation)" if config['charset']
-      end
+#    rescue Exception => sqlerr
+ #     $stderr.puts sqlerr
     end
   end
  
@@ -55,25 +43,28 @@ namespace :db do
   task :configuration => :environment do
     if ENV['DATABASE_URL'].nil?
       @config = YAML.load_file('config/database.yml')[DATABASE_ENV]
-      @config = @config.merge({'database'=> 'postgres', 'schema_search_path'=> 'public'})
+      @config = @config.merge({'schema_search_path'=> 'public'})
     else
       @config = URI.parse(ENV['DATABASE_URL'])
     end
+    puts "@config = #{@config.inspect}"
   end
 
   task :configure_connection => :configuration do
-    puts @config.inspect
-    puts @config.path
-    puts @config.path[1..-1]
-    ActiveRecord::Base.establish_connection(
-      :adapter  => @config.scheme == 'postgres' ? 'postgresql' : @config.scheme,
-      :host     => @config.host,
-      :port     => @config.port,
-      :username => @config.user,
-      :password => @config.password,
-      :database => @config.path[1..-1],
-      :encoding => 'utf8'
-    )
+    if @config.respond_to?('path')
+      puts @config.path[1..-1]
+      ActiveRecord::Base.establish_connection(
+        :adapter  => @config.scheme == 'postgres' ? 'postgresql' : @config.scheme,
+        :host     => @config.host,
+        :port     => @config.port,
+        :username => @config.user,
+        :password => @config.password,
+        :database => @config.path[1..-1],
+        :encoding => 'utf8'
+      )
+    else
+      ActiveRecord::Base.establish_connection(@config)
+    end
     ActiveRecord::Base.logger = Logger.new STDOUT if @config['logger']
   end
 
