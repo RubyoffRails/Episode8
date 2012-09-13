@@ -1,7 +1,11 @@
 source 'http://rubygems.org'
 
 gem 'rake'
+gem 'rspec'
 gem 'activesupport'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'geocoder'
+gem 'activesupport'
+gem 'activerecord'
+gem 'pg'

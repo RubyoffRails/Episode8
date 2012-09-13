@@ -4,6 +4,12 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sinatra/content_for'
 require 'geocoder'
+
+require_relative 'db/setup'
+require_relative 'models/page'
+require_relative 'models/book'
+require_relative 'db/seed'
+
 enable :sessions
 
 before do
@@ -32,4 +38,27 @@ post '/number' do
   number_as_int = params.fetch('number').to_i
   @the_number = rand(number_as_int)
   erb :number
+end
+
+get '/adventure' do
+  @page = session[:page] || Page.starting_point
+  session[:page] = @page
+  @book = Book.new(@page)
+  if @book.complete_game?
+    erb :complete
+  else
+    erb :page
+  end
+end
+
+post '/adventure' do
+  @book = Book.new(session[:page])
+  session[:page] = @book.input(params[:choice])
+  puts params[:choice]
+  redirect '/adventure'
+end
+
+post '/reset' do
+  session[:page] = nil
+  redirect '/adventure'
 end
