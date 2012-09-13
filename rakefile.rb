@@ -62,6 +62,7 @@ namespace :db do
   end
 
   task :configure_connection => :configuration do
+    puts @config.inspect
     ActiveRecord::Base.establish_connection(
       :adapter  => @config.scheme == 'postgres' ? 'postgresql' : @config.scheme,
       :host     => @config.host,
