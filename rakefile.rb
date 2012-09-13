@@ -65,7 +65,6 @@ namespace :db do
     else
       ActiveRecord::Base.establish_connection(@config)
     end
-    ActiveRecord::Base.logger = Logger.new STDOUT if @config['logger']
   end
 
   desc 'Create the database from config/database.yml for the current DATABASE_ENV'
