@@ -63,12 +63,12 @@ namespace :db do
 
   task :configure_connection => :configuration do
     ActiveRecord::Base.establish_connection(
-      :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
-      :host     => db.host,
-      :port     => db.port,
-      :username => db.user,
-      :password => db.password,
-      :database => db.path[1..-1],
+      :adapter  => @config.scheme == 'postgres' ? 'postgresql' : @config.scheme,
+      :host     => @config.host,
+      :port     => @config.port,
+      :username => @config.user,
+      :password => @config.password,
+      :database => @config.path[1..-1],
       :encoding => 'utf8'
     )
     ActiveRecord::Base.logger = Logger.new STDOUT if @config['logger']
