@@ -53,12 +53,11 @@ namespace :db do
   end
 
   task :configuration => :environment do
-    @config = YAML.load_file('config/database.yml')#[DATABASE_ENV]
+    @config = YAML.load_file('config/database.yml')[DATABASE_ENV]
   end
 
   task :configure_connection => :configuration do
     ActiveRecord::Base.establish_connection(@config.merge({'database'=> 'postgres', 'schema_search_path'=> 'public'}))
-    ActiveRecord::Base.establish_connection @config
     ActiveRecord::Base.logger = Logger.new STDOUT if @config['logger']
   end
 
