@@ -5,7 +5,14 @@ require 'sinatra/reloader'
 enable :sessions
 
 get '/' do
-	erb :dashboard
+	#erb :dashboard
+	about_text = []
+	about_text << "I've been learning Ruby for about five months."
+	about_text << "I live in Atlanta, Georgia."
+	about_text << "I like reading, knitting, and gardening."
+	about_text << "I went to Clemson University. Go Tigers!!"
+	@random_text = about_text.sample
+	erb :about
 end
 
 get '/about' do
