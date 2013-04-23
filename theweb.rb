@@ -62,7 +62,6 @@ post '/option_2' do
 	end
 end
 
-
 post '/number' do
 	@number_of_randoms = session[:number_of_randoms] || 0
 	@number_of_randoms += 1
