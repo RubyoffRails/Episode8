@@ -3,10 +3,7 @@ require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/reloader'
 
-configure(:development) do
-   require_relative 'db/setup'
-end
-
+require_relative 'db/setup'
 require_relative 'models/page'
 require_relative 'models/book'
 require "./db/seed"
