@@ -18,5 +18,8 @@ post '/number' do
 end
 
 get '/about' do
+	about_me = Array["a human being", "female", "a programmer", "fun"]
+	random_about_me_choice = rand(about_me.length)
+	@about_me_choise = about_me[random_about_me_choice]
 	erb :about
 end
