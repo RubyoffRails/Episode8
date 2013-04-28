@@ -3,6 +3,9 @@ require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/reloader'
 
+#ENV.to_hash.each do |key, value|
+ #   puts("#{key}\t#{value}")
+#end
 require_relative 'db/setup'
 require_relative 'models/page'
 require_relative 'models/book'
