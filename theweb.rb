@@ -16,3 +16,7 @@ post '/number' do
 	@the_number = rand(number_as_string)
 	erb :number
 end
+
+get '/about' do
+	erb :about
+end
