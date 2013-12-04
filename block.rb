@@ -1,23 +1,25 @@
-class Logger
+ class Logger
+   
+   attr_reader :messages
 
-	attr_reader :messages
+   def initialize
+   	@messages = []
+   end
 
-	def initialize
-		@messages = []
-	end
-
-	def log_it(message)
-		puts "before #{message}"
-		yield
-		puts "after #{message}"
-	end
+   def log_it(message)
+   	puts "before #{message}"
+   	yield
+   	puts "after  #{message}"
+   	#@messages << message  	 end
 
 end
 
 @logger = Logger.new
 
 @logger.log_it "The stuff happened" do
-	10.times do 
-		puts "it's happening"
-	end
+	puts "it's going to happen"
 end
+
+#@logger.messages.each do |msg|
+#	puts msg
+#end
