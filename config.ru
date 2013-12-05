@@ -1,2 +1,2 @@
 require "./theweb"
-run Sinatra::Application 
+run Sinatra::Application
