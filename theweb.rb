@@ -22,7 +22,6 @@ post '/number' do
 end
 
 post '/likes' do
-	list = ["Soccer", "Startups", "Programming", "Paul Graham", "Silicon Valley", "Disruption"]
-	@likes = rand(list)
+	@likes = ["Soccer", "Startups", "Programming", "Paul Graham", "Silicon Valley", "Disruption"].sample
 	erb :about
 end
