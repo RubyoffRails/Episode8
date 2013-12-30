@@ -28,9 +28,6 @@ get '/about' do
     @answer_select = []
           @answers = ["She can code in Ruby", "She has a dog named Lulu", "She never quite learned how to ride a bike",
             "She's seen all Die Hard Movies", "She only uses chopsticks to eat her food"]
-            @answers.each do |x|
-              @answer_select << x
-            end
              @reply = @answer_select.sample
              erb :about
 end
