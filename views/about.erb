@@ -1,15 +1,15 @@
 
-  <div class="row">
-    <div class="span3">
-      <img src="http://www.gravatar.com/avatar/154f018ffd2af17c45edf47eaa113b07.png?s=200">
-    </div>
-    <div class="span7 hero-unit">
-      <h1>About Me.</h1>
-      <p>
-        My name is Jason. I’ve been in the role of Business Analyst for over 10 years now.
-      </p>
-    </div>
+<div class="row">
+  <div class="span3">
+    <img src="http://www.gravatar.com/avatar/154f018ffd2af17c45edf47eaa113b07.png?s=200">
   </div>
+  <div class="span7 hero-unit">
+    <h1>About Me.</h1>
+    <p>
+      My name is Jason. I’ve been in the role of Business Analyst for over 10 years now.
+    </p>
+  </div>
+</div>
 
 
 <div class="row">
@@ -20,5 +20,24 @@
     <p>
       I've always enjoyed solving the tough problems thrown my way as an analyst. There are patterns that are predictable, but there's always enough variability to keep it interesting. It's a bit like solving a puzzle.
     </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class=" span8 offset3">
+    <hr>
+    <h2>Featured cookbook recommendation:</h2>
+    <div class="row">
+    <div class="span2">
+      <img src="<%= @featured_pick["image"] %>">
+    </div>
+    <div class="span6">
+      <h3><%= @featured_pick["book_name"] %></h3>
+      <p>by <%= @featured_pick["author"] %></p>
+      <p>
+        <%= @featured_pick["description"] %>
+      </p>
+    </div>
+  </div>
   </div>
 </div>

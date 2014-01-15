@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/reloader'
+require 'yaml'
 enable :sessions
 
 get '/' do
@@ -18,5 +19,7 @@ post '/number' do
 end
 
 get '/about' do
+  my_picks = YAML.load(File.read("./my_picks.yml"))
+  @featured_pick = my_picks.sample
   erb :about
 end
