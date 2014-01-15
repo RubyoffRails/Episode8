@@ -5,10 +5,6 @@ require 'sinatra/reloader'
 require 'yaml'
 enable :sessions
 
-get '/' do
-	erb :dashboard
-end
-
 post '/number' do
 	@number_of_randoms = session[:number_of_randoms] || 0
 	@number_of_randoms += 1
@@ -18,7 +14,7 @@ post '/number' do
 	erb :number
 end
 
-get '/about' do
+get '/' do
   my_picks = YAML.load(File.read("./my_picks.yml"))
   @featured_pick = my_picks.sample
   erb :about
