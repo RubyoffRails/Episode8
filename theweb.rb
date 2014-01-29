@@ -15,13 +15,14 @@ post '/number' do
 end
 
 get '/' do
-  my_picks ||= Picks.new.get_picks
+  my_picks ||= Picks.get_picks
   @featured_pick = my_picks.sample
   erb :about
 end
 
 class Picks
-  def get_picks
+  @@picks = []
+  def self.get_picks
     YAML.load(File.read("./my_picks.yml"))
   end
 end
