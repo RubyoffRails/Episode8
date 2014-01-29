@@ -1,0 +1,14 @@
+<div class="adventure">
+  <% if @end == true %>
+    <h1 data-id="<%= @current_page %>">Game Over!</h1>
+    <p><%= @content %></p>
+    <a href="/adventure" class="btn btn-primary">Play Again?</a>
+  <% else %>
+    <h1 data-id="<%= @current_page %>">Welcome to your adventure!</h1>
+    <p><%= @content %></p>
+    <p>
+      <button type="button" class="btn btn-primary" id="choiceA"><%= @choiceOne %></button>
+      <button type="button" class="btn btn-primary" id="choiceB"><%= @choiceTwo %></button>
+    </p>
+  <% end %>
+</div>
