@@ -21,6 +21,7 @@ GEM
     backports (3.4.0)
     builder (3.1.4)
     i18n (0.6.9)
+    kgio (2.8.1)
     minitest (4.7.5)
     multi_json (1.8.4)
     pg (0.17.1)
@@ -29,6 +30,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    raindrops (0.12.0)
     rake (10.1.1)
     sinatra (1.4.4)
       rack (~> 1.4)
@@ -45,6 +47,10 @@ GEM
       atomic
     tilt (1.4.1)
     tzinfo (0.3.38)
+    unicorn (4.8.0)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
 
 PLATFORMS
   ruby
@@ -56,3 +62,4 @@ DEPENDENCIES
   rake
   sinatra
   sinatra-contrib
+  unicorn
