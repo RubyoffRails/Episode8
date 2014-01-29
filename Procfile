@@ -1,1 +1,0 @@
-web: rackup -s puma
