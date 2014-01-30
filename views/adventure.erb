@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="span9 offset1 hero-unit">
+    <h1>Adventure Time!</h1>
+    <p><%= session[:book].current_page.content %></p>
+
+    <form method="POST" action="/adventure/my_game">
+      <button name="selected_option" type="submit" class="btn btn-large btn-primary" value="A">
+        <%= session[:book].current_page.options.first.preview %>
+      </button>
+      <button name="selected_option" type="submit" class="btn btn-large btn-primary" value="B">
+        <%= session[:book].current_page.options.last.preview %>
+      </button>
+    </form>
+  </div>
+</div>
