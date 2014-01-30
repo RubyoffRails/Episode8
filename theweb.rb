@@ -1,12 +1,10 @@
-require 'rubygems'
-require 'bundler/setup'
 require 'sinatra'
-require 'sinatra/reloader'
+require './environments'
 
-require_relative 'db/setup'
 require_relative 'models/page'
 require_relative 'models/book'
 require_relative 'db/seed'
+
 
 enable :sessions
 
@@ -43,29 +41,22 @@ get '/about' do
 end
 
 post '/adventure' do
-    ActiveRecord::Base.connection_pool.with_connection do
-      ActiveRecord::Base.establish_connection(connection_details)
+    if settings.development?
+      ActiveRecord::Base.connection_pool.with_connection do
+        ActiveRecord::Base.establish_connection(connection_details)
+      end
     end
     book = Book.new(Page.find(params.fetch('id')))
-    puts "In POST, created book: #{params.fetch('selection')}"
     book.input(params.fetch('selection'))
-    puts "In POST, finished input"
  
     @current_page = book.current_page.id
-    puts "In POST, created current page: #{@current_page}"
 
     if book.complete_game?
-      puts "complted game book: #{book}, currentpage: #{@current_page}"
       @content = book.current_page.content 
-      puts "content: #{@content}"
       @end = true
     else
-      puts "In POST, checked complete_game"
-
       @end = false
-      @content = book.current_page.content
-        puts "In POST, created next content: #{@content}"
- 
+      @content = book.current_page.content 
       @choiceOne = Page.find(book.current_page.option_ids.first).preview
       @choiceTwo = Page.find(book.current_page.option_ids.last).preview
     end
@@ -73,8 +64,10 @@ post '/adventure' do
 end
 
 get '/adventure' do
-  ActiveRecord::Base.connection_pool.with_connection do
-    ActiveRecord::Base.establish_connection(connection_details)
+  if settings.development?
+      ActiveRecord::Base.connection_pool.with_connection do
+        ActiveRecord::Base.establish_connection(connection_details)
+      end
   end
   book = Book.new(Page.where(starting_point: true).first)
   @content = book.current_page.content
