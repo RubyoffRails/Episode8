@@ -11,7 +11,7 @@ enable :sessions
 
 abouts = {"First Name" => "Noah", "Last Name" => "Patterson", "Cat Two" => "Minna", "Cat One" => "Navi", "City" => "Washington, DC", "First Email" => "noah@noah-patterson.com", "Second Email" => "albinosquirrelclimb@gmail.com", "Home Town" => "Asheville, NC", "Favorite Food" => "cheese danish", "Twitter" => "@albinosquirrel"}
 keys = abouts.keys
-connection_details = YAML::load(File.open('config/database.yml'))
+
 
 get '/' do
 	erb :dashboard
@@ -43,6 +43,7 @@ end
 
 post '/adventure' do
     if settings.development?
+      connection_details = YAML::load(File.open('config/database.yml'))
       ActiveRecord::Base.connection_pool.with_connection do
         ActiveRecord::Base.establish_connection(connection_details)
       end
@@ -66,6 +67,7 @@ end
 
 get '/adventure' do
   if settings.development?
+    connection_details = YAML::load(File.open('config/database.yml'))
       ActiveRecord::Base.connection_pool.with_connection do
         ActiveRecord::Base.establish_connection(connection_details)
       end
