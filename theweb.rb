@@ -18,5 +18,11 @@ post '/number' do
 end
 
 get '/about' do
+  list = [ 'I\'m a new fan of Ice Hockey.',
+           'My favourite team is the Chicago Blackhawks.',
+           'I like Purple.',
+           'The next language I\'m learning is Python.'
+         ]
+  @factoid = list.shuffle.first
   erb :about
 end
