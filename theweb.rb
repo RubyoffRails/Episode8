@@ -19,6 +19,6 @@ get '/' do
            'I like Purple.',
            'The next language I\'m learning is Python.'
          ]
-  @factoid = list.shuffle.first
+  @factoid = list.shuffle.sample
   erb :about
 end
