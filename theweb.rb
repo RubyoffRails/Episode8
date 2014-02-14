@@ -4,9 +4,9 @@ require 'sinatra'
 require 'sinatra/reloader'
 enable :sessions
 
-get '/' do
-	erb :dashboard
-end
+#get '/' do
+#	erb :dashboard
+#end
 
 post '/number' do
 	@number_of_randoms = session[:number_of_randoms] || 0
@@ -17,7 +17,7 @@ post '/number' do
 	erb :number
 end
 
-get '/about' do
+get '/' do
   list = [ 'I\'m a new fan of Ice Hockey.',
            'My favourite team is the Chicago Blackhawks.',
            'I like Purple.',
