@@ -22,3 +22,8 @@ get '/' do
   @factoid = list.sample
   erb :about
 end
+
+get '/adventure' do
+  erb :adventure
+end
+
