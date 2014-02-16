@@ -27,3 +27,12 @@ get '/adventure' do
   erb :adventure
 end
 
+post '/adventure' do
+  answer = params.fetch('answer')
+  @result = case answer.downcase
+  when 'a' then "Go into the forest."
+  when 'b' then "Walk down the road."
+  else redirect '/adventure'
+  end
+  erb :adventure_post
+end
