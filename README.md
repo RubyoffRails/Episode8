@@ -26,7 +26,7 @@ Eagle Level
 Show Links
 ----------
 
-* [http://www.confreaks.com/videos/759-rubymidwest2011-keynote-architecture-the-lost-years](Architecture, The Lost Years): Talk by Uncle Bob at Ruby Midwest on how we should contain our Application Code in Gems, not in Rails code
+* [Architecture, The Lost Years](http://www.confreaks.com/videos/759-rubymidwest2011-keynote-architecture-the-lost-years): Talk by Uncle Bob at Ruby Midwest on how we should contain our Application Code in Gems, not in Rails code
 * http://www.github.com/sinatra/sinatra-contrib
 * http://www.sinatrarb.com
 * http://empty-meadow-9136.heroku.com/
