@@ -8,6 +8,9 @@ get '/' do
 	erb :dashboard
 end
 
+get '/about' do
+  erb :about
+end
 post '/number' do
 	@number_of_randoms = session[:number_of_randoms] || 0
 	@number_of_randoms += 1
