@@ -1,0 +1,13 @@
+<h1>Your story so far:</h1>
+
+<h2><%= @content %></h2>
+<br>
+<h2>What do you want to do next?</h2>
+
+<form method="POST" action="/option_1">
+	<input type="submit" class="btn btn-large btn-primary" value="<%= @option_1 %>"/>
+</form>
+
+<form method="POST" action="/option_2">
+	<input type="submit" class="btn btn-large btn-primary" value="<%= @option_2 %>"/>
+</form>
