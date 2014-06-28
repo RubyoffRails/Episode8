@@ -1,6 +1,10 @@
 source 'http://rubygems.org'
 
 gem 'rake'
+gem 'activerecord'
 gem 'activesupport'
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem 'shotgun'
+gem 'rspec'
+gem 'pg'
