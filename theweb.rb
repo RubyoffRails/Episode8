@@ -5,14 +5,9 @@ require 'sinatra/reloader'
 enable :sessions
 
 get '/' do
+  @title = "Patrick Irwin"
+  likes = ["Turtles", "Cake", "Puppies", "Ruby", "Archer (The Cartoon)", "PC Games", "Stuff", "Apples", "Programming"]
+  @random_likes = likes[rand(likes.length)]
 	erb :dashboard
 end
 
-post '/number' do
-	@number_of_randoms = session[:number_of_randoms] || 0
-	@number_of_randoms += 1
-	session[:number_of_randoms] = @number_of_randoms
-	number_as_string = params.fetch('number').to_i
-	@the_number = rand(number_as_string)
-	erb :number
-end
