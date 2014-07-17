@@ -21,3 +21,6 @@ doc/
 
 config/database.yml
 TODO
+
+.DS_Store
+.idea
