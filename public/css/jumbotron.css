@@ -1,0 +1,23 @@
+
+.jumbotron {
+  padding-bottom: 15px;
+}
+.about {
+  list-style-type: none;
+  padding-top: 1em;
+  padding-bottom: 0;
+}
+
+.about li {
+  font-size: 1.5em;
+}
+.title {
+  background: purple;
+  color: #000;
+
+}
+
+.info {
+  margin: 0 1em;
+
+}
