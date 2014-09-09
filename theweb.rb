@@ -16,3 +16,12 @@ post '/number' do
 	@the_number = rand(number_as_string)
 	erb :number
 end
+
+post '/about' do
+	ryan_facts = ['Chuck Norris wears a Ryan Moser jersey',
+											 'Ryan is likely to have a squid on his head',
+											 'Ryan likes to do math for fun and profit', 
+											 'The creature Ryan most resembles is a box turtle']
+	@ryan_fact = ryan_facts[rand( ryan_facts.length )]
+	erb :about
+end
