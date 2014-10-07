@@ -5,7 +5,11 @@ require 'sinatra/reloader'
 enable :sessions
 
 get '/' do
-	erb :dashboard
+	erb :about
+end
+
+get '/about.erb' do
+  erb :about
 end
 
 post '/number' do
@@ -15,4 +19,9 @@ post '/number' do
 	number_as_string = params.fetch('number').to_i
 	@the_number = rand(number_as_string)
 	erb :number
+end
+
+post '/likes' do
+	@likes = ["Soccer", "Startups", "Programming", "Paul Graham", "Silicon Valley", "Disruption"].sample
+	erb :about
 end
